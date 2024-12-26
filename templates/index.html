@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>SMS Spam Detector</h1>
+        <form action="/predict" method="POST">
+            <input type="text" name="sms" placeholder="Enter your SMS here" required>
+            <button type="submit">Check</button>
+        </form>
+        {% if prediction %}
+        <div class="result">
+            The SMS is: 
+            <span class="{{ 'red_text' if prediction == 'Spam' else 'green_text' }}">
+                {{ prediction }}
+            </span>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
